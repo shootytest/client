@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS6132 Report</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+      h2, h3 {
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body style="margin: 2em 15%; text-align: left;">
+    <h1>CS6132 Assignment Q1: a short report</h1>
+    <hr>
+    <h2>Introduction</h2>
+    <p>
+      For this question, I have decided to make a multiplayer game using sockets, which should be able to demonstrate the client-server distributed application model.
+      The server is coded using deno and TypeScript, and the client is made using the HTML canvas element and JavaScript.
+    </p>
+    <hr>
+    <h2>The game</h2>
+    <p>
+      <i>(!) See also: <a href="../help/">the help page</a></i>
+    </p>
+    <p>
+      To try out the game, go to <a href="https://shootytest.surge.sh/" target="_blank">shootytest.surge.sh</a>!
+    </p>
+    <p>
+      The game is a multiplayer shooter game that can support many players at once (although the current map is meant for around 2-4 people to play).
+      To describe the main part of the gameplay in one very long sentence:
+      type a name, choose a "left click weapon" and a "right click ability", join the game, use the chosen weapon to shoot and eliminate other players and get points, answer networking questions fast and get more points, get eliminated, and repeat.
+    </p>
+    <p>
+      The game has a few features:
+    </p>
+    <ol>
+      <li>
+        All actions are in real-time, e.g., if you move to the right, the movement of your character (a circle) will be updated on all other players' screens in real-time.
+      </li>
+      <li>
+        Aiming and shooting. This game requires a mouse for the best experience, because accurate aiming and clicking is needed in order to shoot at a target location.
+        (A mousepad is okay but it might be disadvantageous for the user.)
+      </li>
+      <li>
+        Many different weapon and ability types. This provides some variety when playing the game with other people.
+      </li>
+      <li>
+        A point system and leaderboard, which encourages people to perform well at the game.
+      </li>
+      <li>
+        A ball. It bounces around. (just for fun)
+      </li>
+      <li>
+        A <a href="https://amogus.surge.sh/chat/" target="_blank">chat</a> system. The game allows for players to communicate amongst themselves.
+      </li>
+      <li>
+        <a href="https://cs6132.surge.sh/" target="_blank">CS6132</a> cisco networking questions are incorporated into the gameplay.
+        Every once in a while, a cisco question will pop-up, and if the question remains unanswered, there will be "serious consequences".
+      </li>
+    </ol>
+    <p>
+      I think this game definitely needs more than 1 person to test out.
+      Currently, it is possible to test it out with 2 different tabs in the same browser, but simultaneous movement and shooting for both tabs is hard to carry out.
+    </p>
+    <p>
+      In conclusion, the game is like <a href="https://shooty.surge.sh/" target="_blank" title="login required :(">shooty</a> but made multiplayer.
+      I think this game falls under these <a href="https://en.wikipedia.org/wiki/Twin-stick_shooter" target="_blank">two</a> <a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/IoGame" target="_blank">genres</a>.
+    </p>
+    <hr>
+    <h2>How it works</h2>
+    <p>
+      Basically, the server runs the game loop and sends the game object data to the client. The client displays the game objects using that data and sends the user input to the server.
+    </p>
+    <h3><u>Server</u></h3>
+    <p>
+      The first thing that the server does (after it starts listening to socket connections) is to initialise a physics engine [in main.ts].
+      In this assignment, I have used <a href="https://brm.io/matter-js/" target="_blank">matter.js</a> as the physics library.
+      Then, the server constructs the layout (map) of the game [in mapmaker.ts].
+    </p>
+    <p>
+      The server is also running a loop that broadcasts a list of objects to all connected clients [in server.ts].
+      This will be what the clients use to update how the game looks.
+    </p>
+    <p>
+      When a client connects to the server, the server registers the client, creating an id for it along with the player object.
+      The server then sends to the client the layout of the map so that the client could display it.
+      The player object gets added to the physics engine.
+      The server then listens to new actions that might be emitted from the client-side socket.
+    </p>
+    <p>
+      The server also broadcasts a random real number to all clients every 2 minutes so that the clients know what question to pick.
+      In addition, it sends information about the time to the next question to clients on each game loop.
+    </p>
+    <p>
+      There are also other things the server does, read the code in server.ts for more.
+    </p>
+    <h3><u>Client</u></h3>
+    <p>
+      When the play button is pressed, the client sends <code>join</code> to the server with the chosen options: name, weapon type and ability type.
+      This prompts the server to actually add the player object into the game world.
+    </p>
+    <p>
+      When actions are performed in the client, it gets sent to the server, and the server simulates them in the game world.
+      For example, when the player presses <kbd>&#8594;</kbd> right arrow button and <kbd>&#8595;</kbd> down arrow button at the same time, the client sends this information to the server every game loop as an object a bit like this:
+      <code>{ left: false, right: true, up: false, down: true, }</code>. The server will proceed to accelerate the player object one unit towards the right-down direction.
+    </p>
+    <p>
+      The other actions like shooting, using the ability and sending a chat message are coded in a similar manner.
+      There are also other things the client does, read the code in main.js for more.
+    </p>
+    <hr>
+    <h2>Reflection</h2>
+    <p>
+      I originally decided to make this game in order to improve on <a href="https://shooty.surge.sh/" target="_blank" title="login required :(">another game that I made</a>.
+      Since sockets had to be used, I learnt how to use deno and typescript (which is supposed to be a better version of node) to set up the server, and found that there is free hosting and deployment provided by <a href="https://deno.com/deploy" target="_blank">deno deploy</a>!
+      Yay! After that, I started making the server and the client <!-- from scratch<b title="although I still copied stuff like camera.js, see.js, math.ts and util.js">*</b>--> together (the switching between typescript and javascript was only a bit confusing because the languages are "the same").
+      Unexpectedly, the game actually worked with minimal debugging, wow!
+    </p>
+    <p>
+      After making the basic functionality, I added other things like the chat feature, the leaderboard, and the networking questions. It was very fun to make (and test)!
+    </p>
+    <p>
+      Something I encountered was the instability of the server. (This might be because it is free.)
+      Sometimes, the client will show a black screen as the map, because somehow the server refuses to send anything to the client even though the connection has been established (it's like a one way connection).
+      Also, sometimes while playing the game there will be some latency issues (this is normal though).
+      I ended up fixing the black screen problem by making the client keep on requesting for the map until it gets the map. Ever since then, I have not encountered this problem!
+    </p>
+    <hr>
+    <h2>Submission</h2>
+    <p>There are 2 zip files containing code: <code>server.zip</code> and <code>client.zip</code>.</p>
+    <p>Since the client application is made in HTML and JavaScript, there is no executable to submit.</p>
+    <h2>How to do set-up</h2>
+    <p>If deno is not installed, install it following the instructions <a href="https://deno.land/manual/getting_started/installation" target="_blank">here</a>.</p>
+    <p>Enter the server folder and start the server by running <code>deno run --allow-net server.ts</code></p>
+    <p>Enter the client folder and use something to set up a HTTP server on localhost to view the client HTML file (e.g. <code>python3 -m http.server</code> or the live server extension in vscode)</p>
+    <p>In client.js</p>
+    <hr>
+    <h2>Acknowledgements</h2>
+    <p>
+      deno deploy for hosting the server
+    </p>
+    <p>
+      surge.sh for hosting the client
+    </p>
+    <p>
+      socket.io for a websocket library
+    </p>
+    <p>
+      matter.js for a physics engine
+    </p>
+    <p>
+      cisco skills for all for the sus questions
+    </p>
+    <p>
+      CS6132 and NUS High
+    </p>
+  </body>
+</html>

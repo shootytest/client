@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body style="margin: 2em 15%;">
+    <h1><circled>?</circled> <kbd>F1</kbd> <circled>?</circled></h1>
+    <hr>
+    <h2>What is this?</h2>
+    <p>This is a multiplayer shooty game!</p>
+    <!-- <p>It uses websockets for the multiplayer functionality, so it should demonstrate the client-server distributed application model.</p> -->
+    <hr>
+    <h2>How to play</h2>
+    <p>The goal of this game is to survive and gain <!-- <s>social credit score</s> --> points.</p>
+    <p>This is you. You can move around.</p>
+    <img src="./you.png" style="width: 30em; border-radius: 1em;">
+    <p>Shoot and <i>hit</i> other players to get points.
+      <br>If you get hit, your health will decrease. If your health decreases until zero, :(<!-- skill issue :) -->.
+    </p>
+    <!-- <p>Walls block your vision, if a wall is in-betwixt you and another person, then you can't see them!</p> -->
+    <hr>
+    <h2>cs6132.surge.sh</h2>
+    <p>Every 120 seconds, a <!-- suspicious --> networking MCQ will pop up on your screen.
+      <br>Now you cannot shoot, but you can still move slowly.
+      <br>Answer the question correctly to restore yourself back to normal and also gain some points!
+    </p>
+    <img src="./question.png" style="width: 50em; border-radius: 1em;">
+    <p>To prevent random guessing, if you select a wrong option, there is a 5 second timeout.
+      <br>To be fair, the same question will appear on everyone's screen at the same time.
+    </p>
+    <hr>
+    <h2>Controls</h2>
+    <table>
+      <thead>
+        <tr style="font-size: 0.01em;"><th>&nbsp;</th><th>&nbsp;</th></tr>
+      </thead>
+      <tbody>
+      <tr><td><kbd>A</kbd> or <kbd>&#8592;</kbd></td><td>move left</td></tr>
+      <tr><td><kbd>W</kbd> or <kbd>&#8593;</kbd></td><td>move up</td></tr>
+      <tr><td><kbd>D</kbd> or <kbd>&#8594;</kbd></td><td>move right</td></tr>
+      <tr><td><kbd>S</kbd> or <kbd>&#8595;</kbd></td><td>move down</td></tr>
+      <tr><td>move the mouse around</td><td>aim</td></tr>
+      <tr><td><kbd>␣ space</kbd> or left click</td><td>shoot</td></tr>
+      <tr><td><kbd>⇧ shift</kbd> or right click</td><td>use ability</td></tr>
+      <tr><td><kbd>⏎ enter</kbd></td><td>enter chat mode</td></tr>
+      <tr><td><kbd>⛝ esc</kbd></td><td>exit chat mode</td></tr>
+      <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> <kbd>5</kbd> <kbd>6</kbd> <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd></td><td>select option</td></tr>
+      <tr><td><kbd>P</kbd> <!-- chosen because it is far away from WASD --></td><td>quit game</td></tr>
+      </tbody>
+    </table>
+    <img src="./help.png" style="width: 75em; border-radius: 1em;">
+    <hr>
+    <h2>Tips</h2>
+    <p>You only start healing if you have not been hit for the last 5 seconds. (important!)</p>
+    <p>There is a large ball that bounces around. It does nothing much, but if you are near the ball, others can see you!</p>
+    <p>Your blue bullets are collidable with other people's red bullets.</p>
+    <p>You can move in 8 directions!</p>
+    <p>Every type of shooter is different, try them out!</p>
+    <p>If the game is too dark, increase the screen brightness... <!-- :( --></p>
+    <p>Always shoot around randomly even if you see no one around so that you can obtain more map visibility using your bullets.</p>
+    <p>If you answer/guess a question very fast, start chasing people who have not answered the question yet!</p>
+    <p>I wonder how many people will read this until the end?</p>
+    <p>The heal ability is a bit too good.</p>
+    <hr>
+    <h2>Play!</h2>
+    <p>To close this page and play the game, <a href="javascript:window.close();">click here ❌</a>!</p>
+    <hr>
+    <h2>Report</h2>
+    <p>For the actual report, <a href="../report/" target="_blank">click here 📝</a>!</p>
+    <hr>
+  </body>
+</html>

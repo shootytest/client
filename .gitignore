@@ -1,0 +1,7 @@
+.vscode/
+editor/
+test/
+.surgeignore
+CNAME
+auto.appcache
+helloworld.ts
