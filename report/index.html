@@ -135,8 +135,9 @@
     <p>If deno is not installed, install it following the instructions <a href="https://deno.land/manual/getting_started/installation" target="_blank">here</a>.</p>
     <p>Create a folder somewhere. In the folder, run <code>git clone "https://github.com/shootytest/server.git"</code> and <code>git clone "https://github.com/shootytest/client.git"</code></p>
     <p>Start the server by running <code>deno run --allow-net server/server.ts</code></p>
-    <p>Enter the client folder and use something to set up a HTTP server on localhost to view the client HTML file (e.g. <code>python3 -m http.server</code> or the live server extension in vscode)</p>
-    <p>In client.js</p>
+    <p>Enter the client folder <code>cd client</code> and use something to set up a HTTP server on localhost to view the client HTML file (e.g. <code>py -m http.server</code> or the live server extension in vscode)</p>
+    <p>Go to client/main.js and change the SERVER variable to <code>http://localhost:8080</code> or whatever the deno server is running on.</p>
+    <p>Navigate to the client page (e.g. if the python http.server option is used, go to <code>http://localhost:8000/client/</code>) and it should work!</p>
     <hr>
     <h2>Acknowledgements</h2>
     <p>
