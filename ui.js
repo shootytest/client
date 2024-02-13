@@ -26,6 +26,9 @@ const upgrades = {
   split3: {
     deco: 113,
   },
+  short3: {
+    deco: 123,
+  },
   fast: {
     deco: 301,
   },
@@ -57,7 +60,7 @@ const upgrades = {
 for (const u of Object.values(upgrades)) {
   u.a = 0;
 }
-const upgrade_order = [/*"circle",*/ "faster", "split3", "triple", /*"double",*/ "basic", "sniper", "large", "launch", /*"trap_large",*/ "trap_fast", "trap_tower"];
+const upgrade_order = [/*"circle",*/ "short3", "faster", "split3", "triple", /*"double",*/ "basic", "sniper", "large", "launch", /*"trap_large",*/ "trap_fast", "trap_tower"];
 const abilities = {};
 const ability_order = ["reload_boost", "speed_boost", "tower_basic", "tower_place", "octopus", "jellyfish", "push", /*"heal",*/ "heal_bulk"];
 for (const ab of ability_order) {

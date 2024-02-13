@@ -36,6 +36,13 @@ export const draw_decoration = (thing, position, size) => {
       draw.line(x, y, x + dx - dy * a, y + dy + dx * a);
       break;
     }
+    case 123: {
+      const a = 0.5;
+      draw.line(x + dy * a, y - dx * a, x + dx + dy * a, y + dy - dx * a);
+      draw.line(x, y, x + dx, y + dy);
+      draw.line(x - dy * a, y + dx * a, x + dx - dy * a, y + dy + dx * a);
+      break;
+    }
     case 200: {
       ctx.strokeStyle = (data.id === thing.t) ? C.blue : C.red;
       ctx.fillStyle = C.transparent;

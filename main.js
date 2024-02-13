@@ -101,9 +101,10 @@ const main = (event) => {
   });
   // add socket listeners
   socket.on("game_data", (gamedata) => {
+    // if (ui.time % 60 === 0) console.log("things", gamedata);
     data.things = gamedata;
     data.update_things();
-    if (data.walls.length <= 0) {
+    if (data.walls.length <= 0 || data.id < 0) {
       socket.emit("map_please");
     }
   });
@@ -118,18 +119,19 @@ const main = (event) => {
     data.walls = gamemap;
   });
   socket.on("map_data", (mapdata) => {
-    console.log(mapdata);
+    // console.log(mapdata);
     data.map = mapdata;
     data.update_map_data();
   });
   socket.on("players", (players) => {
-    console.log(players);
+    // console.log(players);
     data.players = players;
     data.update_players();
     setTimeout(() => data.update_players, 500);
   });
-  socket.on("id", (n) => {
-    data.id = n;
+  socket.on("id", (id) => {
+    // console.log(id);
+    data.id = id;
   });
   init(); // see above
   setInterval(tick, 16);
