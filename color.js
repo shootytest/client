@@ -90,24 +90,39 @@ export const colors = {
   [14]: C.wall_ball,
 };
 
-// no idea why i put this here
+// really no idea why i put this here
 const NAMES = [
+  // synonyms
   "A", "amog", "amongst", "emonges", "amid", "amidst", "midst", "within", "within", "betwixt", "inbetwixt", "inbetween",
+  // far-fetched
   "along", "alongst", "alongside", "mongoose", "mongrel", "agog", "smog", "fungus", "amoonguss", "mango", "mangoes",
+  // ncl
   "by and large", "proof of concept",
+  // vent
   "vent", "ventilation", "ventral", "event", "prevent", "solvent", "haven't", "adventure", "invent",
-  "sustainable", "sustainability", "misuse", "disused", "suspension", "consensus", "versus", "caucasus",
+  // sus
+  "unsustained", "sustainability", "misuse", "disused", "suspension", "consensus", "versus", "caucasus",
+  // impostor
   "preposterous", "imp", "gnome", "poster", "eco", "smog",
+  // colours
   "red", "blue", "green", "pink", "orange", "yellow", "black", "white", "purple", "brown", "cyan", "lime", "maroon", "rose", "banana", "gray", "tan", "coral", "fortegreen",
+  // numbers
   "15", "17", "7th", "11th", "70",
+  // usernames
   "alien", "balldan", "halogen", "hub", "oui", "ozy", "skill", "skull", "tsk",
+  // lida
   "laid", "dial", "LIDAR", "holiday", "solidarity", "consolidate", "consolidation", "consolidationists", "alidade", "validation", "collidable", "solidate", "slidable", "solidago",
+  // locations
   "security", "o2", "engine", "airship", "mira", "decontamination", "navigation",
-  "shhhhhhh", "discuss", "crew", "enginner", "ghost", "hidden agenda", "report", "airship", "spaceship", "sabotage", "inner", "sloth", "hit", "space", "task", "vote", "the thing",
+  // mentioned in the game
+  "shhhhhhh", "discuss", "crew", "enginner", "ghost", "report", "airship", "spaceship", "sabotage", "inner", "sloth", "hit", "space", "task", "vote", "the thing",
+  // combination of letters
   "mongolia", "samoa", "guam", "oman", "gnu",
-  "klotski", "stacey", "bulbul", "surveys", "fix", "who goes there", "primus inter pares", "spirit of st. louis airport",
+  // really really obscure references
+  "klotski", "stacey", "bulbul", "surveys", "fix", "goldenrods", "phosphorus", "hidden agenda", "who goes there", "primus inter pares", "spirit of st. louis airport",
 ];
 
+// NAME doesn't stand for anything right
 export const random_NAME = () => {
   return NAMES[Math.floor(Math.random() * NAMES.length)];
 };

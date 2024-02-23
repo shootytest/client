@@ -7,7 +7,7 @@ export const get_start_options = () => {
   return JSON.parse(localStorage.getItem(START_OPTIONS_KEY)) || {
     name: random_NAME(),
     upgrade: "basic",
-    ability: "speed_boost",
+    ability: "octopus",
   };
 };
 

@@ -7,8 +7,6 @@ const keydown_listeners = [];
 const keyup_listeners = [];
 let key_changed = false;
 
-const Vector = Matter.Vector;
-
 export const update_controls = (socket) => {
   //if (!key_changed) return;
   key_changed = false;
